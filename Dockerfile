@@ -7,7 +7,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     pip install rethinkdb
 
+COPY docker-entrypoint.sh /usr/local/bin
+
 USER rethinkdb
 
-ENTRYPOINT ["rethinkdb"]
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["--help"]
