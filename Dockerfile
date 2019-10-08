@@ -2,10 +2,11 @@ FROM rethinkdb:2.3.5
 
 LABEL maintainer="marius.beck@nb.no"
 
-RUN apt-get update && \
+RUN rm /etc/apt/sources.list.d/rethinkdb.list && \
+    apt-get update && \
     apt-get -y install python-pip && \
     rm -rf /var/lib/apt/lists/* && \
-    pip install rethinkdb
+    pip install rethinkdb==2.3.0.post6
 
 COPY docker-entrypoint.sh /usr/local/bin
 
